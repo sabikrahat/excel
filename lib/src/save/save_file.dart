@@ -88,7 +88,7 @@ class Save {
       );
     }
 
-    // TODO track & write the numFmts/numFmt to styles.xml if used
+    // track & write the numFmts/numFmt to styles.xml if used
     final List<XmlElement> children;
     switch (value) {
       case null:
@@ -487,7 +487,8 @@ class Save {
           }
           return MapEntry<int, CustomNumFormat>(e.key, format);
         })
-        .whereNotNull()
+        .where((e) => e != null)
+        .cast<MapEntry<int, CustomNumFormat>>()
         .sorted((a, b) => a.key.compareTo(b.key));
 
     if (customNumberFormats.isNotEmpty) {
